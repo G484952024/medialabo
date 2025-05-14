@@ -1,0 +1,19 @@
+h2{
+    color:black;
+    background-color:rgb(81, 234, 162);
+}
+
+div#zentai {
+	display: grid;
+	grid-template-columns:1fr 1fr;
+	grid-template-rows:450px;
+	width:2000px;
+	flex-direction: row;
+}
+
+div#zentai > div {
+	margin-left:10px;
+	margin-bottom:5px;
+	padding: 5px 5px 5px 5px;
+	background-color: #ffefaf;
+}
