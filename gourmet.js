@@ -1,7 +1,9 @@
 
 // 課題3-2 のプログラムはこの関数の中に記述すること
 function print(data) {
-  console.log(data.results_start.accses);
+  for(let a of data.results.shop){
+  console.log(a.access);
+  }
 }
 
 // 課題5-1 の関数 printDom() はここに記述すること
