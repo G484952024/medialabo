@@ -1,9 +1,9 @@
 
 // 課題3-2 のプログラムはこの関数の中に記述すること
 function print(data) {
-  for(let a of data.results.shop){
-  console.log(a.access);
-  }
+  let p = document.querySelector('div#result');
+  let t = document.createElement('h3');
+  p.insertAdjacentElement('afterend', t);
 }
 
 // 課題5-1 の関数 printDom() はここに記述すること
