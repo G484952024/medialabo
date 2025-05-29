@@ -1,29 +1,103 @@
 
 // 課題3-2 のプログラムはこの関数の中に記述すること
 function print(data) {
-  let p = document.querySelector('div#result');
-  let t = document.createElement('h3');
-  p.insertAdjacentElement('afterend', t);
-}
+  for(let a of data.results.shop){
+    console.log(a.name);//店舗名を表示
+    console.log(a.access);//アクセス情報を表示
+    console.log(a.address);//住所を表示
+    console.log(a.budget.name);//予算を表示
+    console.log(a.catch);//キャッチコピーを表示
+    console.log(a.genre.name);//ジャンルを表示
+    console.log(a.open);//営業日時を表示
+    console.log(a.station_name);//最寄り駅を表示
+    console.log(a.sub_genre.name);//サブジャンルの名前を表示
+    }
+  }
+
 
 // 課題5-1 の関数 printDom() はここに記述すること
 function printDom(data) {
-  
+  let p = document.querySelector('body');
+  let t = document.createElement('div');
+  t.setAttribute('id','result');
+  p.insertAdjacentElement('beforeend', t);
+  t.textContent = data.results.shop[0].name;
+
+  t = document.createElement('div');
+  p.insertAdjacentElement('beforeend',t);
+  t.textContent = data.results.shop[0].access;
+
+  t = document.createElement('div');
+  p.insertAdjacentElement('beforeend',t);
+  t.textContent = data.results.shop[0].address;
+
+  t = document.createElement('div');
+  p.insertAdjacentElement('beforeend',t);
+  t.textContent = data.results.shop[0].budget.name;
+
+  t = document.createElement('div');
+  p.insertAdjacentElement('beforeend',t);
+  t.textContent = data.results.shop[0].catch;
+
+  t = document.createElement('div');
+  p.insertAdjacentElement('beforeend',t);
+  t.textContent = data.results.shop[0].genre.name;
+
+  t = document.createElement('div');
+  p.insertAdjacentElement('beforeend',t);
+  t.textContent = data.results.shop[0].open;
+
+  t = document.createElement('div');
+  p.insertAdjacentElement('beforeend',t);
+  t.textContent = data.results.shop[0].station_name;
+
+  t = document.createElement('div');
+  p.insertAdjacentElement('beforeend',t);
+  t.textContent = data.results.shop[0].sub_genre.name;
+
 }
-
 // 課題6-1 のイベントハンドラ登録処理は以下に記述
-
+let b = document.querySelector('#print');
+b.addEventListener('click',sendRequest);
 
 
 
 // 課題6-1 のイベントハンドラ sendRequest() の定義
 function sendRequest() {
+  let s = document.querySelector('select#genre');
+  let idx = s.selectedIndex;  // idx 番目の option が選択された
 
+  let os = s.querySelectorAll('option');  // s の子要素 option をすべて検索
+  let o = os.item(idx);       // os の idx 番目の要素
+
+  console.log('選択された ' + idx + ' 番目の option の情報:');
+  console.log('  value=' + o.getAttribute('value'));  // id 属性を表示
+  console.log('  textContent='+o.textContent);
+  let url ='https://www.nishita-lab.org/web-contents/jsons/hotpepper/'+o.getAttribute('value')+'.json';
+
+     // 通信開始
+    axios.get(url)
+        .then(showResult)   // 通信成功
+        .catch(showError)   // 通信失敗
+        .then(finish);      // 通信の最後の処理
 }
 
 // 課題6-1: 通信が成功した時の処理は以下に記述
 function showResult(resp) {
+  // サーバから送られてきたデータを出力
+    let data = resp.data;
 
+    // data が文字列型なら，オブジェクトに変換する
+    if (typeof data === 'string') {
+        data = JSON.parse(data);
+    }
+
+    // data をコンソールに出力
+    console.log(data);
+
+    // data.x を出力
+    console.log(data.x);
+    printDom(data);
 }
 
 // 課題6-1: 通信エラーが発生した時の処理
