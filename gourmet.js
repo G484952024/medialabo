@@ -16,46 +16,66 @@ function print(data) {
 
 
 // 課題5-1 の関数 printDom() はここに記述すること
+
+
+
 function printDom(data) {
-  let p = document.querySelector('body');
-  let t = document.createElement('div');
-  t.setAttribute('id','result');
-  p.insertAdjacentElement('beforeend', t);
-  t.textContent = data.results.shop[0].name;
+  let count=0;
+  let body = document.querySelector('body');
+    
+  let result = document.createElement('div');
+  result.setAttribute('id','result');
+  body.insertAdjacentElement('beforeend', result); 
+  for(let kekka of data.results.shop){
+    count++;
+    
+   
+    let countp=document.createElement('p');
+    countp.textContent = '検索結果'+count+'件目';
+    result.insertAdjacentElement('beforeend',countp);
+    //console.log(countp);デバッグ用
+    
+    let div = document.createElement('div');
+    result.insertAdjacentElement('beforeend',div);
+    div.textContent ='名前:'+kekka.name;
+    
+    
+    div = document.createElement('div');
+    result.insertAdjacentElement('beforeend',div);
+    div.textContent = 'アクセス情報:'+kekka.access;
 
-  t = document.createElement('div');
-  p.insertAdjacentElement('beforeend',t);
-  t.textContent = data.results.shop[0].access;
+    div = document.createElement('div');
+    result.insertAdjacentElement('beforeend',div);
+    div.textContent ='住所:'+kekka.address;
 
-  t = document.createElement('div');
-  p.insertAdjacentElement('beforeend',t);
-  t.textContent = data.results.shop[0].address;
+    div = document.createElement('div');
+    result.insertAdjacentElement('beforeend',div);
+    div.textContent ='予算:'+ kekka.budget.name;
 
-  t = document.createElement('div');
-  p.insertAdjacentElement('beforeend',t);
-  t.textContent = data.results.shop[0].budget.name;
+    div = document.createElement('div');
+    result.insertAdjacentElement('beforeend',div);
+    div.textContent ='キャッチコピー:'+ kekka.catch;
 
-  t = document.createElement('div');
-  p.insertAdjacentElement('beforeend',t);
-  t.textContent = data.results.shop[0].catch;
+    div = document.createElement('div');
+    result.insertAdjacentElement('beforeend',div);
+    div.textContent ='ジャンル:'+ kekka.genre.name;
 
-  t = document.createElement('div');
-  p.insertAdjacentElement('beforeend',t);
-  t.textContent = data.results.shop[0].genre.name;
+    div = document.createElement('div');
+    result.insertAdjacentElement('beforeend',div);
+    div.textContent ='営業日時:'+ kekka.open;
 
-  t = document.createElement('div');
-  p.insertAdjacentElement('beforeend',t);
-  t.textContent = data.results.shop[0].open;
+    div = document.createElement('div');
+    result.insertAdjacentElement('beforeend',div);
+    div.textContent ='最寄り駅:'+ kekka.station_name;
 
-  t = document.createElement('div');
-  p.insertAdjacentElement('beforeend',t);
-  t.textContent = data.results.shop[0].station_name;
+    div = document.createElement('div');
+    result.insertAdjacentElement('beforeend',div);
+    div.textContent ='サブジャンルの名前:'+ kekka.sub_genre.name;
+    
+      
+    }
+  }
 
-  t = document.createElement('div');
-  p.insertAdjacentElement('beforeend',t);
-  t.textContent = data.results.shop[0].sub_genre.name;
-
-}
 // 課題6-1 のイベントハンドラ登録処理は以下に記述
 let b = document.querySelector('#print');
 b.addEventListener('click',sendRequest);
@@ -64,6 +84,10 @@ b.addEventListener('click',sendRequest);
 
 // 課題6-1 のイベントハンドラ sendRequest() の定義
 function sendRequest() {
+  let i = document.querySelector('div#result');
+  if(i !== null || i !== undefined){
+    i.remove();
+  }
   let s = document.querySelector('select#genre');
   let idx = s.selectedIndex;  // idx 番目の option が選択された
 
