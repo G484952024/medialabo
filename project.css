@@ -5,15 +5,14 @@ h2{
 
 div#zentai {
 	display: grid;
-	grid-template-columns:1fr 1fr;
-	grid-template-rows:450px;
-	width:2000px;
-	flex-direction: row;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	gap: 20px;
+    padding: 20px;
 }
 
 div#zentai > div {
-	margin-left:10px;
-	margin-bottom:5px;
-	padding: 5px 5px 5px 5px;
+	border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+	padding:10px;
 	background-color: #ffefaf;
 }

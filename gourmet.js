@@ -24,55 +24,69 @@ function printDom(data) {
   let body = document.querySelector('body');
     
   let result = document.createElement('div');
-  result.setAttribute('id','result');
+  result.setAttribute('id','zentai');
   body.insertAdjacentElement('beforeend', result); 
+
+
   for(let kekka of data.results.shop){
     count++;
+
+    let card = document.createElement('div');
+    card.classList.add('card');
     
-   
     let countp=document.createElement('p');
     countp.textContent = '検索結果'+count+'件目';
-    result.insertAdjacentElement('beforeend',countp);
+    //result.insertAdjacentElement('beforeend',countp);
     //console.log(countp);デバッグ用
+    card.appendChild(countp);
     
     let div = document.createElement('div');
-    result.insertAdjacentElement('beforeend',div);
+    //result.insertAdjacentElement('beforeend',div);
     div.textContent ='名前:'+kekka.name;
+    card.appendChild(div);
     
     
     div = document.createElement('div');
-    result.insertAdjacentElement('beforeend',div);
+    //result.insertAdjacentElement('beforeend',div);
     div.textContent = 'アクセス情報:'+kekka.access;
+    card.appendChild(div);
 
     div = document.createElement('div');
-    result.insertAdjacentElement('beforeend',div);
+    //result.insertAdjacentElement('beforeend',div);
     div.textContent ='住所:'+kekka.address;
+    card.appendChild(div);
 
     div = document.createElement('div');
-    result.insertAdjacentElement('beforeend',div);
+    //result.insertAdjacentElement('beforeend',div);
     div.textContent ='予算:'+ kekka.budget.name;
+    card.appendChild(div);
 
     div = document.createElement('div');
-    result.insertAdjacentElement('beforeend',div);
+    //result.insertAdjacentElement('beforeend',div);
     div.textContent ='キャッチコピー:'+ kekka.catch;
+    card.appendChild(div);
 
     div = document.createElement('div');
-    result.insertAdjacentElement('beforeend',div);
+    //result.insertAdjacentElement('beforeend',div);
     div.textContent ='ジャンル:'+ kekka.genre.name;
+    card.appendChild(div);
 
     div = document.createElement('div');
-    result.insertAdjacentElement('beforeend',div);
+    //result.insertAdjacentElement('beforeend',div);
     div.textContent ='営業日時:'+ kekka.open;
+    card.appendChild(div);
 
     div = document.createElement('div');
-    result.insertAdjacentElement('beforeend',div);
+    //result.insertAdjacentElement('beforeend',div);
     div.textContent ='最寄り駅:'+ kekka.station_name;
+    card.appendChild(div);
 
     div = document.createElement('div');
-    result.insertAdjacentElement('beforeend',div);
-    div.textContent ='サブジャンルの名前:'+ kekka.sub_genre.name;
+    //result.insertAdjacentElement('beforeend',div);
+    div.textContent ='サブジャンルの名前:'+ (kekka.sub_genre ? kekka.sub_genre.name : 'なし');
+    card.appendChild(div);
     
-      
+    result.insertAdjacentElement('beforeend', card);
     }
   }
 
@@ -84,8 +98,8 @@ b.addEventListener('click',sendRequest);
 
 // 課題6-1 のイベントハンドラ sendRequest() の定義
 function sendRequest() {
-  let i = document.querySelector('div#result');
-  if(i !== null || i !== undefined){
+  let i = document.querySelector('div#zentai');
+  if(i !== null && i !== undefined){
     i.remove();
   }
   let s = document.querySelector('select#genre');
