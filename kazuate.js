@@ -25,7 +25,7 @@ function hantei() {
     console.log("「正解です．おめでとう!」");
   }if(kaisu>=4){
     console.log("「答えは"+kotae+"でした．すでにゲームは終わっています」");
-  }if(kaisu===3){
+  }if(kaisu===3 && (kotae>yoso || kotae<yoso)){
     console.log("「まちがい．残念でした答えは"+kotae+"です．」");
   }if(kaisu<=2 && kotae>yoso){
     console.log("「まちがい．答えはもっと大きいですよ」");
@@ -39,9 +39,9 @@ function hantei() {
   let i =document.querySelector('span#answer');
   i.textContent = yoso;
 
-  let kotae = kaisu+"回目の予想:"+yoso;
+  let kekka = yoso;
   let span = document.querySelector('span#answer');
-  span.textContent = kotae;
+  span.textContent = kekka;
 }
 
 let b =  document.querySelector('button#print');
