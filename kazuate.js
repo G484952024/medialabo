@@ -20,17 +20,19 @@ function hantei() {
   // kotae と yoso が一致するかどうか調べて結果を出力
   // 課題3-1における出力先はコンソール
   kaisu=kaisu+1;
+
+  let result = document.querySelector('p#result');
   
   if(yoso===kotae){
-    console.log("「正解です．おめでとう!」");
+    result.textContent = "「正解です．おめでとう!」";
   }if(kaisu>=4){
-    console.log("「答えは"+kotae+"でした．すでにゲームは終わっています」");
+    result.textContent ="「答えは"+kotae+"でした．すでにゲームは終わっています」";
   }if(kaisu===3 && (kotae>yoso || kotae<yoso)){
-    console.log("「まちがい．残念でした答えは"+kotae+"です．」");
+    result.textContent = "「まちがい．残念でした答えは"+kotae+"です．」";
   }if(kaisu<=2 && kotae>yoso){
-    console.log("「まちがい．答えはもっと大きいですよ」");
+    result.textContent ="「まちがい．答えはもっと大きいですよ」";
   }if(kaisu<=2 && kotae<yoso){
-    console.log("「まちがい．答えはもっと小さいですよ」");
+    result.textContent ="「まちがい．答えはもっと小さいですよ」";
   }
 
   let p = document.querySelector('span#kaisu');
